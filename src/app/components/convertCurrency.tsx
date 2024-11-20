@@ -62,6 +62,15 @@ export const ConvertCurrency = () => {
     }
   };
 
+  const swapCurrencies = () => {
+    setSelectedCurrencies((prev) => {
+      return {
+        from: prev.to,
+        to: prev.from,
+      };
+    });
+  };
+
   const updateAmountHandler = (value: string) => {
     if (/^\d+(\.\d{0,2})?$/.test(value)) {
       setAmount(value);
@@ -80,6 +89,7 @@ export const ConvertCurrency = () => {
             currencies={currencies}
             selectedCurrencies={selectedCurrencies}
             updateCurrencyHandler={updateCurrencyHandler}
+            swapCurrencies={swapCurrencies}
           />
           {conversionData ? <ConvertedTotal conversionData={conversionData} /> : null}
         </>

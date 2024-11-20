@@ -14,9 +14,15 @@ interface SelectCurrencyProps {
   currencies: Currency[];
   selectedCurrencies: any;
   updateCurrencyHandler: (type: string, value: string) => void;
+  swapCurrencies: () => void;
 }
 
-export const SelectCurrency = ({ currencies, selectedCurrencies, updateCurrencyHandler }: SelectCurrencyProps) => {
+export const SelectCurrency = ({
+  currencies,
+  selectedCurrencies,
+  swapCurrencies,
+  updateCurrencyHandler,
+}: SelectCurrencyProps) => {
   return (
     <div className="w-full flex flex-col items-center sm:flex-row gap-4 justify-between">
       <div className="w-full">
@@ -49,7 +55,12 @@ export const SelectCurrency = ({ currencies, selectedCurrencies, updateCurrencyH
         </Select>
       </div>
       <div>
-        <button type="button" className="p-2 rounded bg-white">
+        <button
+          type="button"
+          onClick={swapCurrencies}
+          disabled={!selectedCurrencies.from || !selectedCurrencies.to}
+          className="bg-black p-1.5 px-3 m-0 text-white rounded-lg disabled:opacity-30 disabled:cursor-not-allowed"
+        >
           Swap
         </button>
       </div>
