@@ -3,7 +3,7 @@ interface HeaderProps {
 }
 
 export const Header = ({ children }: HeaderProps) => (
-  <header className="p-4">
+  <header className="my-6 p-4">
     <h1 className="text-2xl font-bold">{children}</h1>
   </header>
 );
