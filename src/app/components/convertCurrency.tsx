@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { TextField } from "./textField";
 import { ConvertedTotal } from "./convertedTotal";
@@ -8,7 +8,7 @@ import { SelectCurrency } from "./selectCurrency";
 
 import { useCurrencies } from "@/app/hooks/useCurrencies";
 import { useConversion } from "@/app/hooks/useConversion";
-
+import { swapCurrencies } from "@/lib/currencyHandlers";
 import { SelectedCurrencies } from "@/app/types/currency";
 
 export const ConvertCurrency = () => {
@@ -43,13 +43,10 @@ export const ConvertCurrency = () => {
     }
   };
 
-  const swapCurrencies = () => {
-    setSelectedCurrencies((prev) => {
-      return {
-        from: prev.to,
-        to: prev.from,
-      };
-    });
+  const swapCurrenciesHandler = () => {
+    const updatedCurrencies = swapCurrencies(selectedCurrencies);
+
+    setSelectedCurrencies(updatedCurrencies);
   };
 
   const updateAmountHandler = (value: string) => {
@@ -69,7 +66,7 @@ export const ConvertCurrency = () => {
             currencies={currencies}
             selectedCurrencies={selectedCurrencies}
             updateCurrencyHandler={updateCurrencyHandler}
-            swapCurrencies={swapCurrencies}
+            swapCurrencies={swapCurrenciesHandler}
           />
           <div className="pt-6 pb-1 mt-4 text-3xl border-t border-t-black/20 text-center">
             {conversionLoading && <div className="opacity-50">Updating...</div>}

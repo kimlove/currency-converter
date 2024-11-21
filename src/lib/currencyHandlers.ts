@@ -6,3 +6,10 @@ export const formatLocalCurrencyValue = (currencyValue: number, outputCurrency: 
 
   return formattedValue;
 };
+
+export const swapCurrencies = (selectedCurrencies: { from: string | null; to: string | null }) => {
+  return {
+    from: selectedCurrencies.to,
+    to: selectedCurrencies.from,
+  };
+};
