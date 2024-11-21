@@ -44,7 +44,7 @@ export const SelectCurrency = ({
                     value={currency.short_code}
                     key={currency.id}
                     className="cursor-pointer"
-                    // disabled={currency.short_code === selectedCurrencies.to}
+                    disabled={currency.short_code === selectedCurrencies.to}
                   >
                     <div className="flex gap-2">
                       <strong>{currency.short_code}</strong>
@@ -84,7 +84,7 @@ export const SelectCurrency = ({
                     value={currency.short_code}
                     key={currency.id}
                     className="cursor-pointer"
-                    // disabled={currency.short_code === selectedCurrencies.to}
+                    disabled={currency.short_code === selectedCurrencies.to}
                   >
                     <div className="flex gap-2">
                       <strong>{currency.short_code}</strong>

@@ -71,9 +71,9 @@ export const ConvertCurrency = () => {
             updateCurrencyHandler={updateCurrencyHandler}
             swapCurrencies={swapCurrencies}
           />
-          <div className="pt-5 pb-1 mt-4 text-3xl border-t border-t-black/20 text-center">
+          <div className="pt-6 pb-1 mt-4 text-3xl border-t border-t-black/20 text-center">
             {conversionLoading && <div className="opacity-50">Updating...</div>}
-            {conversionError && <div className="text-red-700 font-bold">Error: {conversionError}</div>}
+            {conversionError && <div className="text-lg text-red-700 font-bold">Error: {conversionError}</div>}
             {!conversionLoading &&
               !conversionError &&
               (conversionData ? (
