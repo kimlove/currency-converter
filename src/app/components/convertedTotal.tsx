@@ -1,3 +1,5 @@
+import { formatLocalCurrencyValue } from "@/lib/currencyHandlers";
+
 interface ConvertedTotalProps {
   conversionData: {
     response: {
@@ -12,10 +14,17 @@ interface ConvertedTotalProps {
 }
 
 export const ConvertedTotal = ({ conversionData }: ConvertedTotalProps) => {
-  const formattedValue = conversionData.response.value.toLocaleString("en-GB", {
-    style: "currency",
-    currency: conversionData?.response?.to,
-  });
+  let formattedValue = null;
 
-  return <div className="text-3xl">{formattedValue}</div>;
+  if (conversionData?.response?.value && conversionData?.response?.to) {
+    formattedValue = formatLocalCurrencyValue(conversionData.response.value, conversionData?.response?.to);
+  }
+
+  // if we have a formattedValue, display it
+  if (formattedValue) {
+    return <div className="text-3xl">{formattedValue}</div>;
+  }
+
+  // Basic error message
+  return <div className="text-3xl">Error displaying value</div>;
 };
