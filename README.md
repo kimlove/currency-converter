@@ -38,17 +38,17 @@ _Note: This assumes you have [Node.js](https://nodejs.org/en) installed._
 
    `npm install`
 
-### Start the Local Development Server
+3. **Start the Local Development Server**
 
-`npm run dev`
+   `npm run dev`
 
-The development build of the task will now be available at [http://localhost:3000/](http://localhost:3000/).
+   The development build of the task will now be available at [http://localhost:3000/](http://localhost:3000/).
 
-### Create an .env file with your currencybeacon.com API_KEY
+4. **Create an `.env` file with your currencybeacon.com API_KEY**
 
-There's an .env.sample file to use as a template. Add your key to `API_KEY=` and save as `.env` - Next.js should pick this up automatically, but may need to restart the dev server if any issues.
+   There's an .env.sample file to use as a template. Add your key to `API_KEY=` and save as `.env` - Next.js should pick this up automatically, but may need to restart the dev server if any issues.
 
-API_URL can be left as is (https://api.currencybeacon.com/v1)
+   API_URL can be left as is (https://api.currencybeacon.com/v1)
 
 ### Run the Jest Unit Tests
 
