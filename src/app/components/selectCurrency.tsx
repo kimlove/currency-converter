@@ -26,7 +26,7 @@ export const SelectCurrency = ({
   return (
     <div>
       <div className="flex pb-1 gap-4 justify-between text-xs uppercase font-bold opacity-80"></div>
-      <div className="w-full flex flex-col items-end sm:flex-row gap-4 justify-between">
+      <div className="w-full flex flex-col items-center sm:items-end sm:flex-row gap-4 justify-between">
         <div className="w-full ">
           <div className="mb-1 text-xs uppercase font-bold text-black/80">Convert From</div>
           <Select

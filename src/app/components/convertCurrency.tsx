@@ -76,7 +76,9 @@ export const ConvertCurrency = () => {
               (conversionData ? (
                 <ConvertedTotal conversionData={conversionData} />
               ) : (
-                <span className="text-lg">Enter a currency value and select two currencies to get started!</span>
+                <div className="text-base sm:text-lg">
+                  Enter a currency value and select two currencies to get started!
+                </div>
               ))}
           </div>
         </>
