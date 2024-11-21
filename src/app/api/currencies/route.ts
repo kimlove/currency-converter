@@ -1,5 +1,3 @@
-import { site } from "@/config";
-
 export async function GET() {
   if (!process.env.API_KEY) {
     return new Response("API key not found, check .env file", {
@@ -10,7 +8,7 @@ export async function GET() {
     });
   }
 
-  const url = `${site.API_BASE_URL}/currencies`;
+  const url = `${process.env.API_URL}/currencies`;
   const api_key = `api_key=${process.env.API_KEY}`; // add api key to request url server side
 
   const response = await fetch(`${url}?${api_key}`, {

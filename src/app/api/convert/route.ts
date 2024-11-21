@@ -1,5 +1,3 @@
-import { site } from "@/config";
-
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const from = searchParams.get("from");
@@ -19,7 +17,7 @@ export async function GET(request: Request) {
     });
   }
 
-  const url = `${site.API_BASE_URL}/convert`;
+  const url = `${process.env.API_URL}/convert`;
   const api_key = `api_key=${process.env.API_KEY}`; // add api key to request url server side
 
   const response = await fetch(`${url}?${api_key}&from=${from}&to=${to}&amount=${amount}`, {
