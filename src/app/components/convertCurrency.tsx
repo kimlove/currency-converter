@@ -25,7 +25,7 @@ export const ConvertCurrency = () => {
     error: conversionError,
   } = useConversion(selectedCurrencies, amount);
 
-  const containerClasses = "flex flex-col gap-4 p-6 rounded-xl w-full bg-black/10 shadow-2xl";
+  const containerClasses = "flex flex-col gap-4 p-6 rounded-xl w-full bg-black/10 shadow-2xl border-2 border-black/20";
 
   if (loading) return <div className={containerClasses}>Loading...</div>;
   if (error) return <div className={containerClasses}>Error: {error}</div>;
