@@ -7,47 +7,28 @@ import { ConvertedTotal } from "./convertedTotal";
 import { SelectCurrency } from "./selectCurrency";
 
 import { useCurrencies } from "@/app/hooks/useCurrencies";
+import { useConversion } from "@/app/hooks/useConversion";
 
 import { SelectedCurrencies } from "@/app/types/currency";
-
-const initCurrencies = {
-  from: null,
-  to: null,
-};
 
 export const ConvertCurrency = () => {
   const { currencies, loading, error } = useCurrencies();
   const [amount, setAmount] = useState("");
-  const [conversionData, setConversionData] = useState(null);
   const [selectedCurrencies, setSelectedCurrencies] = useState<SelectedCurrencies>({
     from: null,
     to: null,
   });
 
-  useEffect(() => {
-    if (selectedCurrencies.from && selectedCurrencies.to && amount) {
-      const convertUrl = `/api/convert?from=${selectedCurrencies.from}&to=${selectedCurrencies.to}&amount=${amount}`;
+  const {
+    conversionData,
+    loading: conversionLoading,
+    error: conversionError,
+  } = useConversion(selectedCurrencies, amount);
 
-      const fetchConversion = async () => {
-        try {
-          const res = await fetch(convertUrl);
-          if (res.ok) {
-            const data = await res.json();
-            setConversionData(data);
-          }
-        } catch (err) {
-          console.error(err);
-        } finally {
-          //   setLoading(false);
-        }
-      };
+  const containerClasses = "flex flex-col gap-4 p-6 rounded-xl w-full bg-black/10 shadow-2xl";
 
-      fetchConversion();
-    }
-  }, [selectedCurrencies, amount]);
-
-  if (loading) return <div className="text-center">Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div className={containerClasses}>Loading...</div>;
+  if (error) return <div className={containerClasses}>Error: {error}</div>;
 
   const updateCurrencyHandler = (type: string, value: string) => {
     if (type && value) {
@@ -76,12 +57,11 @@ export const ConvertCurrency = () => {
       setAmount(value);
     } else {
       setAmount(value.slice(0, -1));
-      setConversionData(null); // reset data
     }
   };
 
   return (
-    <section className="flex flex-col gap-4 p-4 rounded-xl w-full bg-black/10">
+    <section className={containerClasses}>
       {currencies ? (
         <>
           <TextField amount={amount} updateAmountHandler={updateAmountHandler} />
@@ -91,7 +71,17 @@ export const ConvertCurrency = () => {
             updateCurrencyHandler={updateCurrencyHandler}
             swapCurrencies={swapCurrencies}
           />
-          {conversionData ? <ConvertedTotal conversionData={conversionData} /> : null}
+          <div className="pt-5 pb-1 mt-4 text-3xl border-t border-t-black/20 text-center">
+            {conversionLoading && <div className="opacity-50">Updating...</div>}
+            {conversionError && <div className="text-red-700 font-bold">Error: {conversionError}</div>}
+            {!conversionLoading &&
+              !conversionError &&
+              (conversionData ? (
+                <ConvertedTotal conversionData={conversionData} />
+              ) : (
+                <span className="text-lg">Enter a currency value and select two currencies to get started!</span>
+              ))}
+          </div>
         </>
       ) : null}
     </section>

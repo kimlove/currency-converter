@@ -10,7 +10,7 @@ export default function Home() {
     <div className="grid grid-rows-[1fr] place-items-center">
       <Header>A simple currency conversion tool</Header>
 
-      <main className="px-4 w-full max-w-[720px]">
+      <main className="px-4 w-full max-w-[780px]">
         {!envSettingCheck ? (
           <div className="flex flex-col gap-4 p-4 rounded-xl w-full bg-black/10 text-center">
             <p>

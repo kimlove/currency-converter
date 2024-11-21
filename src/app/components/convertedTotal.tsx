@@ -17,5 +17,5 @@ export const ConvertedTotal = ({ conversionData }: ConvertedTotalProps) => {
     currency: conversionData?.response?.to,
   });
 
-  return <div className="pt-4 mt-4 text-4xl border-t border-t-black/20 text-center ">{formattedValue}</div>;
+  return <div className="text-3xl">{formattedValue}</div>;
 };
