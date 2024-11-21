@@ -57,9 +57,9 @@ API_URL can be left as is (https://api.currencybeacon.com/v1)
 ## Known Issues
 
 - Test coverage is basic, with more time this could be improved specially around testing edge cases with business logic and custom hooks.
-- Some duplication in the selectCurrency... ideally this would be DRYed up to avoid doubling up on the <Select> component.
+- Some duplication in the selectCurrency... ideally this would be DRYed up to avoid doubling up on the `Select` component.
 
-## Future Improvements
+### Future Improvements
 
 - Display more information about the converted currency (full name of converted currency).
 - Display the exchange rate.
