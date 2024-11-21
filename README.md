@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TDS currency conversion task
 
-## Getting Started
+A simple currency conversion tool built with Next.js, TypeScript, and Tailwind.
 
-First, run the development server:
+This project is also hosted at: https://tds.kiml.dev/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Converts currency values between two selected currencies.
+- Uses real-time exchange rate data from currencybeacon.com.
+- Built with a responsive UI using TailwindCSS.
+- Server-side route handlers ensure secure API key handling.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js 14
+- TypeScript
+- Tailwind
+- Jest with React Testing Library
 
-## Learn More
+Git commit messages follow the [Semantic Commit Messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716) guidelines.
 
-To learn more about Next.js, take a look at the following resources:
+# Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To avoid exposing the API key to the client, I've used server side route handlers which allows you to avoid including sensitive .env values in the client JS bundle.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+More information: https://nextjs.org/docs/app/building-your-application/routing/route-handlers
 
-## Deploy on Vercel
+## Local Quick Start
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+_Note: This assumes you have [Node.js](https://nodejs.org/en) installed._
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Clone this repository or [download the .zip file](https://github.com/kimlove/currency-converter/archive/refs/heads/main.zip):**
+
+   `git clone https://github.com/kimlove/currency-converter.git`
+
+2. **Install npm dependencies in the cloned folder:**
+
+   `npm install`
+
+### Start the Local Development Server
+
+`npm run dev`
+
+The development build of the task will now be available at [http://localhost:3000/](http://localhost:3000/).
+
+### Create an .env file with your currencybeacon.com API_KEY
+
+There's an .env.sample file to use as a template. Add your key to `API_KEY=` and save as `.env` - Next.js should pick this up automatically, but may need to restart the dev server if any issues.
+
+API_URL can be left as is (https://api.currencybeacon.com/v1)
+
+### Run the Jest Unit Tests
+
+`npm test`
+
+## Known Issues
+
+- Test coverage is basic, with more time this could be improved specially around testing edge cases with business logic and custom hooks.
+- Some duplication in the selectCurrency... ideally this would be DRYed up to avoid doubling up on the <Select> component.
+
+## Future Improvements
+
+- Display more information about the converted currency (full name of converted currency).
+- Display the exchange rate.
+- Add a time-series chart of the last 30 days of exchange rates for selected currencies (using a charting package like Recharts).
+- Store the last selected currencies in `sessionStorage` to preserve the state after a browser refresh.
